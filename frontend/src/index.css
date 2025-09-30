@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+/* Estilos globales profesionales */
+body {
+  background: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
+  color: #0f172a;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Asegurar que todos los textos sean oscuros y legibles */
+h1, h2, h3, h4, h5, h6 {
+  color: #0f172a !important;
+  font-weight: 600;
+}
+
+p, span, div {
+  color: #1e293b !important;
+}
+
+/* Texto secundario más oscuro */
+.text-muted, .text-gray-600, .text-gray-500 {
+  color: #475569 !important;
+}
+
+/* Enlaces con mejor contraste */
+a {
+  color: #0ea5e9 !important;
+}
+
+a:hover {
+  color: #0284c7 !important;
+}
+
+/* Asegurar que las etiquetas y labels sean oscuras */
+label {
+  color: #374151 !important;
+  font-weight: 500;
+}
+
+/* Placeholders más oscuros */
+::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Inputs y elementos de formulario */
+input, textarea, select {
+  color: #1e293b !important;
+}
+
+/* Estilos específicos para botones */
+button {
+  font-weight: 500;
+}
+
+/* Botones primary con colores explícitos */
+.btn-primary {
+  background-color: #0284c7 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  background-color: #0369a1 !important;
+}
+
+/* Asegurar que los botones tengan buen contraste */
+button[type="submit"] {
+  background-color: #0284c7 !important;
+  color: white !important;
+  border: none !important;
+}
+
+button[type="submit"]:hover {
+  background-color: #0369a1 !important;
+}
+
+/* Mejoras de scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f3f4f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+
+/* Focus visible mejorado */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #0ea5e9, 0 0 0 4px rgba(14, 165, 233, 0.2);
+}
+
+/* Transiciones suaves globales */
+* {
+  transition: colors 0.2s ease-in-out;
+}
