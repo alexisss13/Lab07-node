@@ -32,7 +32,7 @@
 ## 🏗️ Arquitectura del Proyecto
 
 ```
-📁 AuthJWT/
+📁 Lab07-node/
 ├── 📁 frontend/          # Aplicación React (Cliente)
 │   ├── 📁 src/
 │   │   ├── 📁 components/    # Componentes reutilizables
@@ -85,8 +85,8 @@
 
 ### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/tu-usuario/authjwt.git
-cd authjwt
+git clone https://github.com/alexisss13/Lab07-node.git
+cd Lab07-node
 ```
 
 ### 2. Configurar el Backend
@@ -106,6 +106,9 @@ cp .env.example .env
 
 # Iniciar servidor backend
 node server.js
+
+# O también por configuración de package.json
+npm run start
 ```
 
 ### 4. Configurar el Frontend
@@ -181,13 +184,16 @@ GET /api/test/admin       # Solo administradores
 ## 📸 Capturas de Pantalla
 
 ### Página de Login
-![Login Page](screenshots/login.png)
+![Login Page](<img width="1862" height="910" alt="image" src="https://github.com/user-attachments/assets/3f4d3c1b-c405-4a30-abe4-7d8adc428220" />)
 
-### Panel de Usuario
-![User Dashboard](screenshots/user-dashboard.png)
+### Página de Registro
+![User Dashboard](<img width="1866" height="916" alt="image" src="https://github.com/user-attachments/assets/08f9e012-1319-45d4-b15d-c9587b81e0d0" />)
+
+### Panel de Moderador
+![Admin Dashboard](<img width="1859" height="921" alt="image" src="https://github.com/user-attachments/assets/61f41ebb-a863-4659-a83b-e70027e0bac1" />)
 
 ### Panel de Administrador
-![Admin Dashboard](screenshots/admin-dashboard.png)
+![Admin Dashboard](<img width="1858" height="910" alt="image" src="https://github.com/user-attachments/assets/c1258f84-989c-45cb-8a77-fbfe7f5025e1" />)
 
 ---
 
