@@ -288,8 +288,8 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 ## 👨‍💻 Autor
 
 **Tu Nombre**
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- LinkedIn: [Tu Perfil](https://linkedin.com/in/tu-perfil)
+- GitHub: [@alexisss13](https://github.com/alexisss13)
+- LinkedIn: [Alexis Jaren Levano Dominguez](https://www.linkedin.com/in/alexis-jaren-levano-dominguez-7708bb293)
 
 ---
 
