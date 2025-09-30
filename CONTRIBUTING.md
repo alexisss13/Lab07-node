@@ -30,8 +30,8 @@ Este proyecto sigue un código de conducta. Al participar, se espera que manteng
 
 1. **Fork el repositorio**
    ```bash
-   git clone https://github.com/tu-usuario/authjwt.git
-   cd authjwt
+   git clone https://github.com/alexisss13/Lab07-node.git
+   cd Lab07-node
    ```
 
 2. **Instalar dependencias**
