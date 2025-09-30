@@ -184,16 +184,19 @@ GET /api/test/admin       # Solo administradores
 ## 📸 Capturas de Pantalla
 
 ### Página de Login
-![Login Page](<img width="1862" height="910" alt="image" src="https://github.com/user-attachments/assets/3f4d3c1b-c405-4a30-abe4-7d8adc428220" />)
+<img width="1862" height="910" alt="image" src="https://github.com/user-attachments/assets/3f4d3c1b-c405-4a30-abe4-7d8adc428220" />
 
 ### Página de Registro
-![User Dashboard](<img width="1866" height="916" alt="image" src="https://github.com/user-attachments/assets/08f9e012-1319-45d4-b15d-c9587b81e0d0" />)
+<img width="1866" height="916" alt="image" src="https://github.com/user-attachments/assets/08f9e012-1319-45d4-b15d-c9587b81e0d0" />
+
+### Página de Usuario
+<img width="1866" height="915" alt="image" src="https://github.com/user-attachments/assets/840d741d-2622-47df-a319-e4b32fb5a5c9" />
 
 ### Panel de Moderador
-![Admin Dashboard](<img width="1859" height="921" alt="image" src="https://github.com/user-attachments/assets/61f41ebb-a863-4659-a83b-e70027e0bac1" />)
+<img width="1859" height="921" alt="image" src="https://github.com/user-attachments/assets/61f41ebb-a863-4659-a83b-e70027e0bac1" />
 
 ### Panel de Administrador
-![Admin Dashboard](<img width="1858" height="910" alt="image" src="https://github.com/user-attachments/assets/c1258f84-989c-45cb-8a77-fbfe7f5025e1" />)
+<img width="1858" height="910" alt="image" src="https://github.com/user-attachments/assets/c1258f84-989c-45cb-8a77-fbfe7f5025e1" />
 
 ---
 
