@@ -22,13 +22,34 @@ const app = express();
 
 // Configura las opciones de CORS para permitir acceso desde el frontend
 // en el puerto 8080
-const corsOptions = {
-  origin: ["http://localhost:5173", //desarrollo local
-  "https://lab07-node.onrender.com"], //despliegue en render
-};
+//const corsOptions = {
+//  origin: ["http://localhost:5173", //desarrollo local
+//  "https://lab07-node.onrender.com"], //despliegue en render
+//};
+//
+//// Aplica el middleware de CORS a la aplicación
+//app.use(cors(corsOptions));
 
-// Aplica el middleware de CORS a la aplicación
-app.use(cors(corsOptions));
+
+const allowedOrigins = [
+  "http://localhost:5173", //desarrollo local
+  "https://lab07-node.onrender.com", // frontend en Render
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Permitir sin origin (por ejemplo, Postman o servidores internos)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // si usas cookies o auth headers
+}));
+
+
 
 // Middleware para analizar solicitudes con cuerpo en formato JSON
 app.use(express.json());
