@@ -55,7 +55,7 @@ const PORT = process.env.PORT || 3000;
 // es false)
 // Luego inicia el servidor y escucha en el puerto definido
 db.sequelize.sync({ force: false }).then(() => {
-  console.log("Database synchronized");
+  console.log("Conectado a PostgreSQL y sincronizado correctamente.");
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);

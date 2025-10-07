@@ -1,4 +1,7 @@
 // app/config/auth.config.js
+import dotenv from "dotenv";
+dotenv.config();
+
 export default {
-  secret: "your-secret-key",
+  secret: process.env.JWT_SECRET || "fallback-secret-key",
 };
