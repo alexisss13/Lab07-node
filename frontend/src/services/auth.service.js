@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
 const authService = {
   signup: (username, email, password, roles = ["user"]) => {
-    return axios.post(API_URL + "auth/signup", {
+    return axios.post(`${API_URL}/auth/signup`, {
       username,
       email,
       password,
@@ -13,7 +13,7 @@ const authService = {
   },
 
   login: async (username, password) => {
-    const response = await axios.post(API_URL + "auth/signin", {
+    const response = await axios.post(`${API_URL}/auth/signin`, {
       username,
       password,
     });
