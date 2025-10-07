@@ -23,7 +23,8 @@ const app = express();
 // Configura las opciones de CORS para permitir acceso desde el frontend
 // en el puerto 8080
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173", //desarrollo local
+  "https://lab07-node.onrender.com"], //despliegue en render
 };
 
 // Aplica el middleware de CORS a la aplicación
