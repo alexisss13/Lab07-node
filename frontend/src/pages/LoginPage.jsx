@@ -38,7 +38,7 @@ export default function LoginPage() {
     setMessage("");
     login(data.username, data.password).then(
       () => {
-        navigate("/profile");
+        navigate("/");
       },
       (error) => {
         const resMessage =
