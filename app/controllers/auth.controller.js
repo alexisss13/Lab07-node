@@ -1,90 +1,98 @@
 // app/controllers/auth.controller.js
 
-// Importa el objeto de modelos (User, Role, etc.) desde la carpeta models
 import db from "../models/index.js";
-// Importa la librería jsonwebtoken para generar tokens JWT
 import jwt from "jsonwebtoken";
-// Importa bcryptjs para encriptar y comparar contraseñas
 import bcrypt from "bcryptjs";
-// Importa la configuración del secreto JWT desde un archivo de configuración
 import authConfig from "../config/auth.config.js";
 
-// Extrae los modelos User y Role desde el objeto db
 const { user: User, role: Role, Sequelize } = db;
 
-// Controlador para el registro de usuarios
+// ============================
+// 📌 Registro de usuarios
+// ============================
 export const signup = async (req, res) => {
   try {
-    // Extrae los datos enviados en el cuerpo de la solicitud
     const { username, email, password, roles } = req.body;
 
-    // Encripta la contraseña antes de guardarla en la base de datos
+    // Encriptar contraseña
     const hashedPassword = await bcrypt.hash(password, 8);
 
-    // Crea un nuevo usuario con los datos proporcionados y la contraseña encriptada
+    // Crear usuario
     const user = await User.create({
       username,
       email,
       password: hashedPassword,
     });
 
-    // Si se proporcionan roles, los usa; si no, asigna el rol "user" por defecto
+    // Manejar roles asignados
     if (roles && roles.length > 0) {
       const foundRoles = await Role.findAll({
-        where: { name: { [Sequelize.Op.in]: roles } }
+        where: { name: { [Sequelize.Op.in]: roles } },
       });
-      await user.setRoles(foundRoles);
+
+      if (foundRoles.length > 0) {
+        await user.setRoles(foundRoles);
+      } else {
+        // Si no se encontraron roles válidos, asignar "user" por defecto
+        const defaultRole = await Role.findOne({ where: { name: "user" } });
+        await user.setRoles([defaultRole]);
+      }
     } else {
-      // Si no se proporcionan roles, asigna el rol "user" por defecto
+      // Si no se especifican roles, asignar "user" por defecto
       const userRole = await Role.findOne({ where: { name: "user" } });
       await user.setRoles([userRole]);
     }
 
-    // Devuelve respuesta exitosa
-    res.status(201).json({ message: "User registered successfully!" });
+    res.status(201).json({
+      message: "✅ User registered successfully!",
+      user: {
+        username: user.username,
+        email: user.email,
+        roles: roles && roles.length ? roles : ["user"],
+      },
+    });
   } catch (error) {
-    // Si ocurre un error, responde con código 500 y el mensaje del error
     res.status(500).json({ message: error.message });
   }
 };
 
-// Controlador para el inicio de sesión
+// ============================
+// 🔑 Inicio de sesión
+// ============================
 export const signin = async (req, res) => {
   try {
     const { username, password } = req.body;
-    // Busca el usuario por su nombre de usuario, incluyendo sus roles
+
+    // Buscar usuario por nombre de usuario
     const user = await User.findOne({
       where: { username },
       include: [{ model: Role, as: "roles" }],
     });
 
-    // Si no se encuentra el usuario, responde con error 404
     if (!user) {
-      return res.status(404).json({ message: "User Not found." });
+      return res.status(404).json({ message: "❌ User not found." });
     }
 
-    // Compara la contraseña proporcionada con la almacenada (ya encriptada)
+    // Verificar contraseña
     const passwordIsValid = await bcrypt.compare(password, user.password);
-
-    // Si la contraseña no es válida, responde con error 401
     if (!passwordIsValid) {
       return res.status(401).json({
         accessToken: null,
-        message: "Invalid Password!",
+        message: "❌ Invalid password!",
       });
     }
 
-    // Si la contraseña es válida, genera un token JWT que expira en 24 horas
+    // Generar token JWT
     const token = jwt.sign({ id: user.id }, authConfig.secret, {
       expiresIn: 86400, // 24 horas
     });
 
-    // Crea un array con los roles del usuario en el formato 'ROLE_ADMIN', 'ROLE_USER', etc.
+    // Formatear roles
     const authorities = user.roles.map(
       (role) => `ROLE_${role.name.toUpperCase()}`
     );
 
-    // Responde con la información del usuario y el token de acceso
+    // Responder con datos del usuario
     res.status(200).json({
       id: user.id,
       username: user.username,
@@ -93,7 +101,6 @@ export const signin = async (req, res) => {
       accessToken: token,
     });
   } catch (error) {
-    // Si ocurre un error en el proceso, responde con código 500 y el mensaje del error
     res.status(500).json({ message: error.message });
   }
 };

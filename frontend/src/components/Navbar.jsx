@@ -12,8 +12,9 @@ const Navbar = () => {
   };
 
   const userRoles = currentUser?.roles || [];
-  const showModeratorBoard = userRoles.includes("ROLE_MODERATOR");
-  const showAdminBoard = userRoles.includes("ROLE_ADMIN");
+  const isAdmin = userRoles.includes("ROLE_ADMIN");
+  const isModerator = userRoles.includes("ROLE_MODERATOR");
+  const isUser = userRoles.includes("ROLE_USER");
 
   return (
     <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50 shadow-soft">
@@ -40,25 +41,55 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            {showModeratorBoard && (
-              <Link
-                to="/mod"
-                className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative group"
-              >
-                Panel de Moderador
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
-              </Link>
+            {/* Admin puede ver todo */}
+            {isAdmin && (
+              <>
+                <Link
+                  to="/admin"
+                  className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative group"
+                >
+                  Panel de Administrador
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
+                </Link>
+                <Link
+                  to="/mod"
+                  className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative group"
+                >
+                  Panel de Moderador
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
+                </Link>
+                <Link
+                  to="/user"
+                  className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative group"
+                >
+                  Panel de Usuario
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
+                </Link>
+              </>
             )}
-            {showAdminBoard && (
-              <Link
-                to="/admin"
-                className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative group"
-              >
-                Panel de Administrador
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
-              </Link>
+
+            {/* Moderador ve su panel + el de usuario */}
+            {!isAdmin && isModerator && (
+              <>
+                <Link
+                  to="/mod"
+                  className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative group"
+                >
+                  Panel de Moderador
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
+                </Link>
+                <Link
+                  to="/user"
+                  className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative group"
+                >
+                  Panel de Usuario
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
+                </Link>
+              </>
             )}
-            {currentUser && (
+
+            {/* Usuario solo ve su panel */}
+            {!isAdmin && !isModerator && isUser && (
               <Link
                 to="/user"
                 className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative group"

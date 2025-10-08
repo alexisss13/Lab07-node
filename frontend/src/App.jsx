@@ -17,10 +17,46 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-        <Route path="/user" element={<PrivateRoute roles={["ROLE_USER"]}><BoardUser /></PrivateRoute>} />
-        <Route path="/mod" element={<PrivateRoute roles={["ROLE_MODERATOR"]}><BoardModerator /></PrivateRoute>} />
-        <Route path="/admin" element={<PrivateRoute roles={["ROLE_ADMIN"]}><BoardAdmin /></PrivateRoute>} />
+
+        {/* Perfil — solo usuarios logueados */}
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Panel de usuario → accesible por todos los roles */}
+        <Route
+          path="/user"
+          element={
+            <PrivateRoute roles={["ROLE_USER", "ROLE_MODERATOR", "ROLE_ADMIN"]}>
+              <BoardUser />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Panel de moderador → accesible por mod y admin */}
+        <Route
+          path="/mod"
+          element={
+            <PrivateRoute roles={["ROLE_MODERATOR", "ROLE_ADMIN"]}>
+              <BoardModerator />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Panel de administrador → solo admin */}
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute roles={["ROLE_ADMIN"]}>
+              <BoardAdmin />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Layout>
   );
